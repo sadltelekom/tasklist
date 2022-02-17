@@ -29,8 +29,8 @@ public class TaskDB {
                     result.getLong("category_id"),
                     result.getString("title"),
                     result.getString("description"),
-                    result.getDate("created_date"),
-                    result.getDate("due_date"),
+                    result.getTimestamp("created_date"),
+                    result.getTimestamp("due_date"),
                     result.getBoolean("done")
             );
 //            System.out.println(result.getDate("created_date"));
@@ -57,8 +57,8 @@ public class TaskDB {
                     result.getLong("category_id"),
                     result.getString("title"),
                     result.getString("description"),
-                    result.getDate("created_date"),
-                    result.getDate("due_date"),
+                    result.getTimestamp("created_date"),
+                    result.getTimestamp("due_date"),
                     result.getBoolean("done")
             );
 

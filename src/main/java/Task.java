@@ -1,15 +1,16 @@
-import java.util.Date;
+import java.sql.Timestamp;
+
 
 public class Task {
    private long id;
    private long category_id;
    private String title;
    private String description;
-   private Date createdDate;
-   private Date dueDate;
+   private Timestamp createdDate;
+   private Timestamp dueDate;
    private boolean isDone;
 
-   public Task(long id, long category_id, String title, String description, Date createdDate, Date dueDate, boolean isDone) {
+   public Task(long id, long category_id, String title, String description, Timestamp createdDate, Timestamp dueDate, boolean isDone) {
       this.id = id;
       this.category_id = category_id;
       this.title = title;
@@ -19,7 +20,7 @@ public class Task {
       this.isDone = isDone;
    }
 
-   public Task(long category_id, String title, String description, Date createdDate, Date dueDate, boolean isDone) {
+   public Task(long category_id, String title, String description, Timestamp createdDate, Timestamp dueDate, boolean isDone) {
       this.category_id = category_id;
       this.title = title;
       this.description = description;
@@ -44,11 +45,11 @@ public class Task {
       return description;
    }
 
-   public Date getCreatedDate() {
+   public Timestamp getCreatedDate() {
       return createdDate;
    }
 
-   public Date getDueDate() {
+   public Timestamp getDueDate() {
       return dueDate;
    }
 
@@ -57,6 +58,6 @@ public class Task {
    }
 
    @Override
-   public String toString() { return "Task: " + title;
+   public String toString() { return "Task: " + title + " created at " + createdDate;
    }
 }
