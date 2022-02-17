@@ -39,6 +39,16 @@ public class Main {
         Task newTask = new Task(2,"Finish our software","Make some working code maybe",null,null,false);
         taskDB.addTaskToDB(newTask);
 
+        Categories newCategorie = new Categories("Something else");
+
+//        long id = categoriesDB.addCategoryToDB(newCategorie);
+//
+//        Categories toChangeCategory = new Categories(id, "Something something");
+//
+//        categoriesDB.updateCategoriesDBFromObject(toChangeCategory);
+
+//        categoriesDB.deleteCategoriesDBFromId(5L);
+
 
 
     }
