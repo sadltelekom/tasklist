@@ -39,7 +39,7 @@ public class Main {
         Task newTask = new Task(2,"Finish our software","Make some working code maybe",null,null,false);
         long newTaskToBedeletedlater = taskDB.addTaskToDB(newTask);
 
-
+        Task changeTask = new Task(1,1,"My First Task", "It i not so nice",null,null,false);
 
         taskDB.updateTaskFromDB(changeTask);
 
@@ -47,15 +47,15 @@ public class Main {
       
         Categories newCategorie = new Categories("Something else");
 
-//        long id = categoriesDB.addCategoryToDB(newCategorie);
-//
-//        Categories toChangeCategory = new Categories(id, "Something something");
-//
-//        categoriesDB.updateCategoriesDBFromObject(toChangeCategory);
+       long id = categoriesDB.addCategoryToDB(newCategorie);
 
-//        categoriesDB.deleteCategoriesDBFromId(5L);
+       Categories toChangeCategory = new Categories(id, "Something something");
 
-        Task changeTask = new Task(1,1,"My First Task", "It i not so nice",null,null,false);
+       categoriesDB.updateCategoriesDBFromObject(toChangeCategory);
+
+       categoriesDB.deleteCategoriesDBFromId(5L);
+
+
 
     }
 }
