@@ -21,7 +21,7 @@ public class Main {
         List<Task> taskArrayList = new ArrayList<>();
         TaskDB taskDB = new TaskDB(dbConnector.getConnection());
 
-        taskArrayList = taskDB.getAllTasksByCategory();
+        taskArrayList = taskDB.getAllTasksFilterByCategory("wo");
 
         for(Task task:taskArrayList) {
             System.out.println(task);
