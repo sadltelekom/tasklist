@@ -215,5 +215,25 @@ public class TaskDB {
         return tasks;
     }
 
+    public long addTaskToDB(Task task) throws SQLException {
+        String sql = " INSERT INTO tasks VALUES(default,?,?,?,default,?,?)";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+        preparedStatement.setLong(1,task.getCategory_id());
+        preparedStatement.setString(2,task.getTitle());
+        preparedStatement.setString(3,task.getDescription());
+        preparedStatement.setTimestamp(4,task.getDueDate());
+        preparedStatement.setInt(5,task.isDone() ? 1 : 0);
+        preparedStatement.executeUpdate();
+
+        ResultSet rs = preparedStatement.getGeneratedKeys();
+        long key = 0;
+        while (rs.next()) {
+            key = rs.getLong(1);
+        }
+
+        return key;
+
+    }
+
 
 }

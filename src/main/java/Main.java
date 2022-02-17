@@ -36,5 +36,10 @@ public class Main {
             System.out.println(category);
         }
 
+        Task newTask = new Task(2,"Finish our software","Make some working code maybe",null,null,false);
+        taskDB.addTaskToDB(newTask);
+
+
+
     }
 }
