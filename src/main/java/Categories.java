@@ -7,6 +7,10 @@ public class Categories {
         this.category = category;
     }
 
+    public Categories(String category) {
+        this.category = category;
+    }
+
     public long getId() {
         return id;
     }
