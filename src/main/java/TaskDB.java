@@ -216,7 +216,7 @@ public class TaskDB {
     }
 
     public long addTaskToDB(Task task) throws SQLException {
-        String sql = " INSERT INTO tasks VALUES(default,?,?,?,default,?,?)";
+        String sql = "INSERT INTO tasks VALUES(default,?,?,?,default,?,?)";
         PreparedStatement preparedStatement = connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
         preparedStatement.setLong(1,task.getCategory_id());
         preparedStatement.setString(2,task.getTitle());
@@ -235,5 +235,23 @@ public class TaskDB {
 
     }
 
+    public int deleteTaskFromDB(long taskId) throws SQLException {
+        String sql = "DELETE FROM tasks WHERE id = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setLong(1,taskId);
+        return preparedStatement.executeUpdate();
+    }
+
+    public int updateTaskFromDB(Task task) throws SQLException {
+        String sql = "Update tasks SET category_id = ?, title = ?, description = ?, due_date = ?, done = ? WHERE id = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setLong(1,task.getCategory_id());
+        preparedStatement.setString(2,task.getTitle());
+        preparedStatement.setString(3,task.getDescription());
+        preparedStatement.setTimestamp(4,task.getDueDate());
+        preparedStatement.setInt(5,task.isDone() ? 1 : 0);
+        preparedStatement.setLong(6,task.getId());
+        return preparedStatement.executeUpdate();
+    }
 
 }
