@@ -37,8 +37,14 @@ public class Main {
         }
 
         Task newTask = new Task(2,"Finish our software","Make some working code maybe",null,null,false);
-        taskDB.addTaskToDB(newTask);
+        long newTaskToBedeletedlater = taskDB.addTaskToDB(newTask);
 
+
+
+        taskDB.updateTaskFromDB(changeTask);
+
+        taskDB.deleteTaskFromDB(newTaskToBedeletedlater);
+      
         Categories newCategorie = new Categories("Something else");
 
 //        long id = categoriesDB.addCategoryToDB(newCategorie);
@@ -49,7 +55,7 @@ public class Main {
 
 //        categoriesDB.deleteCategoriesDBFromId(5L);
 
-
+        Task changeTask = new Task(1,1,"My First Task", "It i not so nice",null,null,false);
 
     }
 }
