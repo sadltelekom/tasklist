@@ -16,7 +16,7 @@ public class TaskDB {
         List<Task> tasks = new ArrayList<>();
 
         Statement statement = connection.createStatement();
-        String sql = "SELECT * FROM tasks ORDER BY " + orderBy;
+        String sql = "SELECT * FROM tasks WHERE done = 0 ORDER BY " + orderBy;
 
         ResultSet result = statement.executeQuery(sql);
 
@@ -44,7 +44,7 @@ public class TaskDB {
         List<Task> tasks = new ArrayList<>();
 
         Statement statement = connection.createStatement();
-        String sql = "SELECT * FROM tasks JOIN categories ON tasks.category_id =categories.id ORDER BY categories.category";
+        String sql = "SELECT * FROM tasks JOIN categories ON tasks.category_id =categories.id WHERE done = 0 ORDER BY categories.category";
 
         ResultSet result = statement.executeQuery(sql);
 
@@ -81,7 +81,7 @@ public class TaskDB {
 
         List<Task> tasks = new ArrayList<>();
 
-        String sql = "SELECT * FROM tasks JOIN categories ON tasks.category_id =categories.id WHERE categories.category LIKE ? ORDER BY categories.category";
+        String sql = "SELECT * FROM tasks JOIN categories ON tasks.category_id=categories.id WHERE categories.category LIKE ? AND tasks.done = 0";
 
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
@@ -109,7 +109,7 @@ public class TaskDB {
 
         List<Task> tasks = new ArrayList<>();
 
-        String sql = "SELECT * FROM tasks WHERE title LIKE ? ORDER BY title";
+        String sql = "SELECT * FROM tasks WHERE title LIKE ? AND done = 0 ORDER BY title";
 
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
@@ -132,11 +132,12 @@ public class TaskDB {
 
         return tasks;
     }
+
     public List<Task> getAllTasksFilterByDescription(String filter) throws SQLException {
 
         List<Task> tasks = new ArrayList<>();
 
-        String sql = "SELECT * FROM tasks WHERE description LIKE ? ORDER BY description";
+        String sql = "SELECT * FROM tasks WHERE description LIKE ? AND done <> 0 ORDER BY description";
 
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
@@ -164,7 +165,7 @@ public class TaskDB {
 
         List<Task> tasks = new ArrayList<>();
 
-        String sql = "SELECT * FROM tasks WHERE title OR description LIKE ? ORDER BY title";
+        String sql = "SELECT * FROM tasks WHERE (title OR description LIKE ?) AND done <> 0 ORDER BY title";
 
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
@@ -187,10 +188,11 @@ public class TaskDB {
 
         return tasks;
     }
+
     public List<Task> getAllOverdueTasks() throws SQLException {
         List<Task> tasks = new ArrayList<>();
 
-        String sql = "SELECT * FROM tasks WHERE due_date < CURRENT_TIMESTAMP() OR done = 0";
+        String sql = "SELECT * FROM tasks WHERE due_date < CURRENT_TIMESTAMP() AND done = 0";
 
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
