@@ -84,9 +84,9 @@ public class TaskDB {
         String sql = "SELECT * FROM tasks JOIN categories ON tasks.category_id =categories.id WHERE categories.category LIKE ? ORDER BY categories.category";
 
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
         preparedStatement.setString(1, "%" + filter + "%");
-        System.out.println(sql);
-        ResultSet result = preparedStatement.executeQuery(sql);
+        ResultSet result = preparedStatement.executeQuery();
 
         while (result.next()) {
             Task task = new Task(
