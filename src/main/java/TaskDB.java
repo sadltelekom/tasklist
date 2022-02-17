@@ -42,7 +42,7 @@ public class TaskDB {
         return tasks;
     }
 
-    private List<Task> getAllTasksWithCategory(String orderBy) throws SQLException {
+    public List<Task> getAllTasksByCategory() throws SQLException {
 
         List<Task> tasks = new ArrayList<>();
 
@@ -80,7 +80,5 @@ public class TaskDB {
         return getAllTasksBy("due_date");
     }
 
-    public List<Task> getAllTasksByCategory() throws SQLException {
-        return getAllTasksBy("category");
-    }
+
 }
